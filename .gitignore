@@ -22,6 +22,7 @@ ENV/
 *.pkl
 *.joblib
 data/
+!requirements.txt
 
 # Model weights
 *.pth
