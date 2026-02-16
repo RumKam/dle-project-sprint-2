@@ -39,6 +39,14 @@ def prepaire_text(df, column):
 
     return df
 
+def load_raw_data(filepath):
+
+    with open(filepath, 'r', encoding='utf-8') as f:
+        lines = [line.rstrip('\n') for line in f]
+    df = pd.DataFrame(lines, columns=['text'])
+    
+    return df
+
 def tokenize_texts(texts, tokenizer):
     
     tokenized = []
@@ -48,11 +56,3 @@ def tokenize_texts(texts, tokenizer):
         ids = tokenizer.encode(text, add_special_tokens=False, truncation=True, max_length=512)
         tokenized.append(ids)
     return tokenized
-
-def load_raw_data(filepath):
-
-    with open(filepath, 'r', encoding='utf-8') as f:
-        lines = [line.rstrip('\n') for line in f]
-    df = pd.DataFrame(lines, columns=['text'])
-    
-    return df
