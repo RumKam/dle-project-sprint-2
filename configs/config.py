@@ -1,0 +1,16 @@
+config = {
+    "SEQ_LEN": 10,
+    "BATCH_SIZE": 256,
+    "TEST_SIZE": 0.1,
+    "VAL_SIZE_FROM_TRAIN": 0.1,
+    "EMB_DIM": 300,
+    "HIDDEN_DIM": 128,
+    "NUM_LAYERS": 2,
+    "DROPOUT": 0.5,
+    "LR": 0.001,
+    "EPOCHS": 10,
+    "PROMPT_RATIO": 0.75,
+    "DEBUG_TRAIN_SIZE": 1000,
+    "DEBUG_VAL_SIZE": 200,
+    "DEBUG_TEST_SIZE": 200,
+}
