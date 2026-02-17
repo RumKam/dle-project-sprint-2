@@ -40,13 +40,7 @@ def train_epoch(model, loader, optimizer, criterion, device, return_grad_norm=Tr
 def train_model(model, train_loader, val_texts, tokenizer, device, seq_len,
                 epochs, optimizer, criterion, save_path='best_lstm_model.pt',
                 val_loader=None, prompt_ratio=0.75):
-    """
-    Полный цикл обучения с отслеживанием истории loss и нормы градиента.
-    Параметры:
-        val_loader: если передан, вычисляется loss на валидации (по батчам).
-        prompt_ratio: доля промпта для вычисления ROUGE.
-    Возвращает кортеж (model, train_losses, val_losses, grad_norms).
-    """
+
     best_rouge1 = 0.0
     train_losses = []
     val_losses = []
