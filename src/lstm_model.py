@@ -2,7 +2,11 @@ import torch
 import torch.nn as nn
 
 class LSTMModel(nn.Module):
+    """LSTM модель для генерации текста с embedding слоем и классификационным выходом"""
+
     def __init__(self, vocab_size, emb_dim=300, hidden_dim=256, num_layers=2, dropout=0.5, pad_idx=0):
+        """Инициализация LSTM модели"""
+
         super().__init__()
         self.embedding = nn.Embedding(vocab_size, emb_dim, padding_idx=pad_idx)
         self.lstm = nn.LSTM(emb_dim, hidden_dim, num_layers, batch_first=True, dropout=0)
@@ -12,6 +16,8 @@ class LSTMModel(nn.Module):
         self.init_weights()
 
     def init_weights(self):
+        """Инициализация весов модели с использованием xavier uniform"""
+
         # Инициализация embedding
         nn.init.xavier_uniform_(self.embedding.weight)
 
@@ -27,6 +33,7 @@ class LSTMModel(nn.Module):
         nn.init.zeros_(self.fc.bias)
 
     def forward(self, input_ids):
+        """Прямой проход через модель"""
 
         x = self.embedding(input_ids)     
         x = self.dropout(x)
@@ -38,6 +45,8 @@ class LSTMModel(nn.Module):
         return logits
 
     def generate(self, prompt_ids, max_length, device='cpu', seq_len=None):
+        """Генерация последовательности токенов на основе промпта """
+        
         if seq_len is None:
             raise ValueError("seq_len must be provided for generation")
         

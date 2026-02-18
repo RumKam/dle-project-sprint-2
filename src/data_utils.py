@@ -4,10 +4,10 @@ import html
 from tqdm import tqdm
 
 def clean_text(text):
+    """Функция для очистки текста"""
+
     # Декодируем HTML-сущности
     text = html.unescape(text)
-    # Приводим к нижнему регистру
-    text = text.lower()
     # Удаляем ссылки
     text = re.sub(r'http\S+', '', text)
     # Удаляем всё, что в квадратных скобках
@@ -30,6 +30,8 @@ def clean_text(text):
     return text
 
 def prepaire_text(df, column):
+    """Функция для обработка текста"""
+
     # Приводим к нижнему регистру
     df['text_clean'] = df[column].str.lower()
     # Очищаем текст
@@ -40,6 +42,7 @@ def prepaire_text(df, column):
     return df
 
 def load_raw_data(filepath):
+    """Функция для загрузки исходного файла"""
 
     with open(filepath, 'r', encoding='utf-8') as f:
         lines = [line.rstrip('\n') for line in f]
@@ -48,6 +51,7 @@ def load_raw_data(filepath):
     return df
 
 def tokenize_texts(texts, tokenizer):
+    """Токенизация текстов"""
     
     tokenized = []
     for text in tqdm(texts, desc="Tokenizing"):

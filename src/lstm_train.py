@@ -4,6 +4,7 @@ from tqdm import tqdm
 from .eval_lstm import compute_rouge
 
 def train_epoch(model, loader, optimizer, criterion, device, return_grad_norm=True):
+    """ Обучает модель в течение одной эпохи"""
 
     model.train()
     total_loss = 0
@@ -40,6 +41,8 @@ def train_epoch(model, loader, optimizer, criterion, device, return_grad_norm=Tr
 def train_model(model, train_loader, val_texts, tokenizer, device, seq_len,
                 epochs, optimizer, criterion, save_path='best_lstm_model.pt',
                 val_loader=None, prompt_ratio=0.75):
+    
+    """Обертка для полного цикла обучения  модели с валидацией и сохранением лучшей версии"""
 
     best_rouge1 = 0.0
     train_losses = []
